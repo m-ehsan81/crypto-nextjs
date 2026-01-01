@@ -19,7 +19,6 @@ function GridRow(props: GridRowType) {
   const { currency, onClickCoin, ...coin } = props;
 
   const {
-    id,
     name,
     image,
     symbol,

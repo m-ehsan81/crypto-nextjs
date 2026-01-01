@@ -4,3 +4,9 @@ export interface ChartProps {
   selectedCoin: GetCoinRes;
   onClose: () => void;
 }
+
+export interface TypeButtonProps {
+  label: string;
+  isSelected: boolean;
+  onClick: () => void;
+}
