@@ -5,6 +5,7 @@ export interface CoinGridProps {
   currency: CurrencyItemsType;
   page: number;
   onPaginationChange: (page: number) => void;
+  onClickCoin: (id: GetCoinRes) => void;
 }
 
 export type CurrencyItemsType = "usd" | "eur" | "jpy";

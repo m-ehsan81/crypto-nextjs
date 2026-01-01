@@ -3,6 +3,17 @@ export interface GetCoinsParams {
   page: number;
 }
 
+export interface GetCoinChartParams {
+  coinId: string;
+  currency: string;
+}
+
+export interface GetCoinChartRes {
+  prices: [number, number][];
+  market_caps: [number, number][];
+  total_volumes: [number, number][];
+}
+
 export interface GetCoinRes {
   id: string;
   symbol: string;

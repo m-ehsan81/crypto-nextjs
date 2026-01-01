@@ -5,7 +5,7 @@ import GridRow from "./grid-row";
 import { CoinGridProps } from "./types";
 
 function CoinGrid(props: CoinGridProps) {
-  const { coins, currency, onPaginationChange, page } = props;
+  const { coins, currency, onPaginationChange, page, onClickCoin } = props;
 
   return (
     <div>
@@ -22,7 +22,12 @@ function CoinGrid(props: CoinGridProps) {
           </thead>
           <tbody>
             {coins.map((coin) => (
-              <GridRow key={coin.id} {...coin} currency={currency} />
+              <GridRow
+                key={coin.id}
+                {...coin}
+                currency={currency}
+                onClickCoin={onClickCoin}
+              />
             ))}
           </tbody>
         </table>
