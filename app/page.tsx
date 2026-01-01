@@ -2,11 +2,25 @@
 
 import CoinGrid from "@/components/coin-grid";
 import { useGetCoinsQuery } from "@/lib/features/crypto/crypto-api";
+import { useState } from "react";
 
 function page() {
-  const { data } = useGetCoinsQuery({ currency: "usd", page: 1 });
+  const [page, setPage] = useState(1);
 
-  return <div>{data && <CoinGrid coins={data} currency="usd" />}</div>;
+  const { data } = useGetCoinsQuery({ currency: "usd", page });
+
+  return (
+    <div>
+      {data && (
+        <CoinGrid
+          coins={data}
+          currency="usd"
+          page={page}
+          onPaginationChange={(page) => setPage(page)}
+        />
+      )}
+    </div>
+  );
 }
 
 export default page;
