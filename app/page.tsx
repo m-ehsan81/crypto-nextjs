@@ -11,7 +11,14 @@ function page() {
   const [page, setPage] = useState(1);
   const [selectedCoin, setSelectedCoin] = useState<GetCoinRes>();
 
-  const { data, isLoading } = useGetCoinsQuery({ currency: "usd", page });
+  const { data, isLoading, error } = useGetCoinsQuery({
+    currency: "usd",
+    page,
+  });
+
+  if (error) {
+    throw error;
+  }
 
   return (
     <div>
