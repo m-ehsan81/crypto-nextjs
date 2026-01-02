@@ -1,0 +1,32 @@
+#loader::before {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  border-radius: 9999px;
+  border: 3px solid transparent;
+  border-top-color: #ba55d3;
+  animation: spin 3s linear infinite;
+}
+
+#loader::after {
+  content: "";
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+  border-radius: 9999px;
+  border: 3px solid transparent;
+  border-top-color: #ff00ff;
+  animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
