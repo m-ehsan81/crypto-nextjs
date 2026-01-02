@@ -21,7 +21,7 @@ function Chart(props: ChartProps) {
 
   const { data, isLoading } = useGetCoinChartQuery({
     coinId: id,
-    currency: "usd",
+    currency: "usdfff",
   });
 
   return (
@@ -45,7 +45,7 @@ function Chart(props: ChartProps) {
         }
       >
         {!data || isLoading ? (
-          <div className="min-h-120">
+          <div className="min-h-120 relative">
             <Loader />
           </div>
         ) : (

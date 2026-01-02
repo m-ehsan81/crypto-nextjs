@@ -4,7 +4,7 @@ function Loader() {
   return (
     <div
       id="preloader"
-      className="fixed inset-0 flex items-center justify-center"
+      className="absolute inset-0 flex items-center justify-center"
     >
       <div
         id="loader"
