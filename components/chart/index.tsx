@@ -9,6 +9,7 @@ import { GetCoinChartRes } from "@/lib/features/crypto/types";
 import { typeOptions } from "./constant";
 import TypeButton from "./type-button";
 import InformationItem from "./information-item";
+import Loader from "../loader";
 
 function Chart(props: ChartProps) {
   const {
@@ -18,12 +19,10 @@ function Chart(props: ChartProps) {
 
   const [type, setType] = useState<keyof GetCoinChartRes>("prices");
 
-  const { data } = useGetCoinChartQuery({
+  const { data, isLoading } = useGetCoinChartQuery({
     coinId: id,
     currency: "usd",
   });
-
-  if (!data) return null;
 
   return (
     <div
@@ -45,49 +44,57 @@ function Chart(props: ChartProps) {
           "w-200 mx-auto p-5 mt-12.5 bg-gray-950 border-2 border-gray-700 rounded-[20px]"
         }
       >
-        <div className="flex items-center mr-2.5 mb-7.5">
-          <Image
-            src={image}
-            alt="icon"
-            width={40}
-            height={40}
-            className="w-10 h-10 mr-5"
-          />
-          <p className="text-2xl">{name}</p>
-        </div>
+        {!data || isLoading ? (
+          <div className="min-h-120">
+            <Loader />
+          </div>
+        ) : (
+          <>
+            <div className="flex items-center mr-2.5 mb-7.5">
+              <Image
+                src={image}
+                alt="icon"
+                width={40}
+                height={40}
+                className="w-10 h-10 mr-5"
+              />
+              <p className="text-2xl">{name}</p>
+            </div>
 
-        <div className="w-190 h-75 m-auto">
-          <ChartComponent data={convertData(data, type)} type={type} />
-        </div>
+            <div className="w-190 h-75 m-auto">
+              <ChartComponent data={convertData(data, type)} type={type} />
+            </div>
 
-        <div className="mt-7.5">
-          {typeOptions.map((item) => (
-            <TypeButton
-              key={item.value}
-              label={item.label}
-              isSelected={type === item.value}
-              onClick={() => setType(item.value as keyof GetCoinChartRes)}
-            />
-          ))}
-        </div>
+            <div className="mt-7.5">
+              {typeOptions.map((item) => (
+                <TypeButton
+                  key={item.value}
+                  label={item.label}
+                  isSelected={type === item.value}
+                  onClick={() => setType(item.value as keyof GetCoinChartRes)}
+                />
+              ))}
+            </div>
 
-        <select
-          className="ml-5 w-30 h-7.5 border border-blue-500 bg-blue-500 text-white rounded-[.3125rem] hidden focus:outline-none"
-          value={type}
-          onChange={(e) => setType(e.target.value as keyof GetCoinChartRes)}
-        >
-          {typeOptions.map((item) => (
-            <option key={item.value} value={item.value}>
-              {item.label}
-            </option>
-          ))}
-        </select>
+            <select
+              className="ml-5 w-30 h-7.5 border border-blue-500 bg-blue-500 text-white rounded-[.3125rem] hidden focus:outline-none"
+              value={type}
+              onChange={(e) => setType(e.target.value as keyof GetCoinChartRes)}
+            >
+              {typeOptions.map((item) => (
+                <option key={item.value} value={item.value}>
+                  {item.label}
+                </option>
+              ))}
+            </select>
 
-        <div className="flex justify-between flex-wrap mt-7.5 mx-5">
-          <InformationItem label="Prices">${current_price}</InformationItem>
-          <InformationItem label="ATH">${ath}</InformationItem>
-          <InformationItem label="Market Cap">{market_cap}</InformationItem>
-        </div>
+            <div className="flex justify-between flex-wrap mt-7.5 mx-5">
+              <InformationItem label="Prices">${current_price}</InformationItem>
+              <InformationItem label="ATH">${ath}</InformationItem>
+              <InformationItem label="Market Cap">{market_cap}</InformationItem>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
