@@ -3,6 +3,7 @@
 import Chart from "@/components/chart";
 import CoinGrid from "@/components/coin-grid";
 import Loader from "@/components/loader";
+import SearchBar from "@/components/search-bar";
 import { useGetCoinsQuery } from "@/lib/features/crypto/crypto-api";
 import { GetCoinRes } from "@/lib/features/crypto/types";
 import { useState } from "react";
@@ -22,6 +23,8 @@ function page() {
 
   return (
     <div>
+      <SearchBar />
+
       {isLoading || !data ? (
         <Loader />
       ) : (
