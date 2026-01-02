@@ -25,25 +25,15 @@ function Chart(props: ChartProps) {
   });
 
   return (
-    <div
-      className={
-        "fixed left-0 top-0 w-full h-full backdrop-blur bg-black/30 overflow-scroll"
-      }
-    >
+    <div className="fixed left-0 top-0 w-full h-full backdrop-blur bg-black/30 overflow-scroll">
       <span
-        className={
-          "inline-block text-2xl font-bold bg-red-500 text-white w-7.5 h-7.5 leading-7.5 text-center mt-7,5 ml-7.5 rounded-[.3125rem] cursor-pointer"
-        }
+        className="inline-block text-2xl font-bold bg-red-500 text-white w-7.5 h-7.5 leading-7.5 text-center mt-7,5 ml-7.5 rounded-[.3125rem] cursor-pointer"
         onClick={onClose}
       >
         X
       </span>
 
-      <div
-        className={
-          "w-200 mx-auto p-5 mt-12.5 bg-gray-950 border-2 border-gray-700 rounded-[20px]"
-        }
-      >
+      <div className="w-200 mx-auto p-5 mt-12.5 bg-gray-950 border-2 border-gray-700 rounded-[20px]">
         {!data || isLoading ? (
           <div className="min-h-120 relative">
             <Loader />
