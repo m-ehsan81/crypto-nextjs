@@ -46,3 +46,17 @@ export interface GetCoinRes {
   } | null;
   last_updated: string;
 }
+
+export interface SearchCoinItem {
+  id: string;
+  name: string;
+  api_symbol: string;
+  symbol: string;
+  market_cap_rank: number;
+  thumb: string;
+  large: string;
+}
+
+export interface GetSearchCoin {
+  coins: SearchCoinItem[];
+}

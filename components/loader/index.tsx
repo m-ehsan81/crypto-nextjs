@@ -1,6 +1,12 @@
+import clsx from "clsx";
 import "./style.css";
 
-function Loader() {
+function Loader({ size = "large" }: { size?: "small" | "large" }) {
+  const sizesClasses = {
+    small: "w-15 h-15",
+    large: "w-37.5 h-37.5",
+  };
+
   return (
     <div
       id="preloader"
@@ -8,7 +14,10 @@ function Loader() {
     >
       <div
         id="loader"
-        className="relative w-37.5 h-37.5 rounded-full border border-transparent border-t-[#9370DB] animate-[spin_2s_linear_infinite]"
+        className={clsx(
+          "relative rounded-full border border-transparent border-t-[#9370DB] animate-[spin_2s_linear_infinite]",
+          sizesClasses[size]
+        )}
       />
     </div>
   );

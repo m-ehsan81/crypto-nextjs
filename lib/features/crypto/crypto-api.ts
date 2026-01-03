@@ -5,6 +5,7 @@ import type {
   GetCoinRes,
   GetCoinChartParams,
   GetCoinChartRes,
+  GetSearchCoin,
 } from "./types";
 
 export const cryptoApi = createApi({
@@ -19,7 +20,15 @@ export const cryptoApi = createApi({
       query: ({ currency, coinId }) =>
         `/coins/${coinId}/market_chart?vs_currency=${currency}&days=7`,
     }),
+    searchCoin: build.query<GetSearchCoin, string>({
+      query: (searchTerm) =>
+        `/search?query=${searchTerm}&x_cg_demo_api_key=${process.env.NEXT_PUBLIC_API_KEY}`,
+    }),
   }),
 });
 
-export const { useGetCoinsQuery, useGetCoinChartQuery } = cryptoApi;
+export const {
+  useGetCoinsQuery,
+  useGetCoinChartQuery,
+  useLazySearchCoinQuery,
+} = cryptoApi;
