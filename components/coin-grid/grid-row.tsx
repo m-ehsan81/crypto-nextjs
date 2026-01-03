@@ -16,23 +16,24 @@ function findSymbol(currency: CurrencyItemsType) {
 }
 
 function GridRow(props: GridRowType) {
-  const { currency, onClickCoin, ...coin } = props;
-
   const {
+    currency,
+    onClickCoin,
+    id,
     name,
     image,
     symbol,
     current_price,
     price_change_percentage_24h: price_change,
     total_volume,
-  } = coin;
+  } = props;
 
   return (
     <tr className="h-20 border-b border-b-gray-800">
       <td>
         <div
           className={"flex items-center cursor-pointer"}
-          onClick={() => onClickCoin(coin)}
+          onClick={() => onClickCoin(id)}
         >
           <Image
             src={image}

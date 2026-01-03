@@ -6,6 +6,7 @@ import type {
   GetCoinChartParams,
   GetCoinChartRes,
   GetSearchCoin,
+  GetCoinIdRes,
 } from "./types";
 
 export const cryptoApi = createApi({
@@ -14,15 +15,17 @@ export const cryptoApi = createApi({
   endpoints: (build) => ({
     getCoins: build.query<GetCoinRes[], GetCoinsParams>({
       query: ({ currency, page }) =>
-        `/coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=20&page=${page}&sparkline=false&locale=en&x_cg_demo_api_key=${process.env.NEXT_PUBLIC_API_KEY}`,
+        `/coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=20&page=${page}&sparkline=false&locale=en`,
     }),
     getCoinChart: build.query<GetCoinChartRes, GetCoinChartParams>({
       query: ({ currency, coinId }) =>
         `/coins/${coinId}/market_chart?vs_currency=${currency}&days=7`,
     }),
     searchCoin: build.query<GetSearchCoin, string>({
-      query: (searchTerm) =>
-        `/search?query=${searchTerm}&x_cg_demo_api_key=${process.env.NEXT_PUBLIC_API_KEY}`,
+      query: (searchTerm) => `/search?query=${searchTerm}`,
+    }),
+    getCoinData: build.query<GetCoinIdRes, string>({
+      query: (coinId) => `/coins/${coinId}`,
     }),
   }),
 });
@@ -31,4 +34,5 @@ export const {
   useGetCoinsQuery,
   useGetCoinChartQuery,
   useLazySearchCoinQuery,
+  useGetCoinDataQuery,
 } = cryptoApi;

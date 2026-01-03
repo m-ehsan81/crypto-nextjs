@@ -1,7 +1,7 @@
 import { GetCoinRes } from "@/lib/features/crypto/types";
 
 export interface ChartProps {
-  selectedCoin: GetCoinRes;
+  selectedCoin: string;
   onClose: () => void;
 }
 

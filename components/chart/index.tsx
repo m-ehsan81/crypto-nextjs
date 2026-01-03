@@ -4,7 +4,10 @@ import Image from "next/image";
 import { convertData } from "../../helpers/convert-data";
 import { ChartProps } from "./types";
 import ChartComponent from "./chart-component";
-import { useGetCoinChartQuery } from "@/lib/features/crypto/crypto-api";
+import {
+  useGetCoinChartQuery,
+  useGetCoinDataQuery,
+} from "@/lib/features/crypto/crypto-api";
 import { GetCoinChartRes } from "@/lib/features/crypto/types";
 import { typeOptions } from "./constant";
 import TypeButton from "./type-button";
@@ -12,16 +15,15 @@ import InformationItem from "./information-item";
 import Loader from "../loader";
 
 function Chart(props: ChartProps) {
-  const {
-    selectedCoin: { id, image, name, current_price, ath, market_cap },
-    onClose,
-  } = props;
+  const { selectedCoin, onClose } = props;
 
   const [type, setType] = useState<keyof GetCoinChartRes>("prices");
 
+  const { data: CoinData } = useGetCoinDataQuery(selectedCoin);
+
   const { data, isLoading } = useGetCoinChartQuery({
-    coinId: id,
-    currency: "usdfff",
+    coinId: selectedCoin,
+    currency: "usd",
   });
 
   return (
@@ -34,7 +36,7 @@ function Chart(props: ChartProps) {
       </span>
 
       <div className="w-200 mx-auto p-5 mt-12.5 bg-gray-950 border-2 border-gray-700 rounded-[20px]">
-        {!data || isLoading ? (
+        {!data || !CoinData || isLoading ? (
           <div className="min-h-120 relative">
             <Loader />
           </div>
@@ -42,13 +44,13 @@ function Chart(props: ChartProps) {
           <>
             <div className="flex items-center mr-2.5 mb-7.5">
               <Image
-                src={image}
+                src={CoinData.image.large}
                 alt="icon"
                 width={40}
                 height={40}
                 className="w-10 h-10 mr-5"
               />
-              <p className="text-2xl">{name}</p>
+              <p className="text-2xl">{CoinData.name}</p>
             </div>
 
             <div className="w-190 h-75 m-auto">
@@ -79,9 +81,15 @@ function Chart(props: ChartProps) {
             </select>
 
             <div className="flex justify-between flex-wrap mt-7.5 mx-5">
-              <InformationItem label="Prices">${current_price}</InformationItem>
-              <InformationItem label="ATH">${ath}</InformationItem>
-              <InformationItem label="Market Cap">{market_cap}</InformationItem>
+              <InformationItem label="Prices">
+                ${CoinData.market_data.current_price.usd}
+              </InformationItem>
+              <InformationItem label="ATH">
+                ${CoinData.market_data.ath.usd}
+              </InformationItem>
+              <InformationItem label="Market Cap">
+                {CoinData.market_data.market_cap.usd}
+              </InformationItem>
             </div>
           </>
         )}

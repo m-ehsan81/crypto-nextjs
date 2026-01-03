@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Pagination } from "../pagination";
 import { HeaderColumns } from "./constant";
 import GridRow from "./grid-row";

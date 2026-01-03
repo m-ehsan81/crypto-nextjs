@@ -11,7 +11,7 @@ import { useState } from "react";
 
 function page() {
   const [page, setPage] = useState(1);
-  const [selectedCoin, setSelectedCoin] = useState<GetCoinRes>();
+  const [selectedCoin, setSelectedCoin] = useState<string>("");
   const [currency, setCurrency] = useState<CurrencyItemsType>("usd");
 
   const { data, isLoading, error } = useGetCoinsQuery({
@@ -45,7 +45,7 @@ function page() {
       {selectedCoin && (
         <Chart
           selectedCoin={selectedCoin}
-          onClose={() => setSelectedCoin(undefined)}
+          onClose={() => setSelectedCoin("")}
         />
       )}
     </div>
