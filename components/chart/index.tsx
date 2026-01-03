@@ -9,22 +9,24 @@ import {
   useGetCoinDataQuery,
 } from "@/lib/features/crypto/crypto-api";
 import { GetCoinChartRes } from "@/lib/features/crypto/types";
-import { typeOptions } from "./constant";
-import TypeButton from "./type-button";
+import { daysOptions, typeOptions } from "./constant";
 import InformationItem from "./information-item";
 import Loader from "../loader";
 import { Symbols } from "../coin-grid/constant";
+import TabItems from "../tab-items";
 
 function Chart(props: ChartProps) {
   const { currency, selectedCoin, onClose } = props;
 
   const [type, setType] = useState<keyof GetCoinChartRes>("prices");
+  const [days, setDays] = useState<number>(7);
 
   const { data: CoinData } = useGetCoinDataQuery(selectedCoin);
 
   const { data, isLoading } = useGetCoinChartQuery({
     coinId: selectedCoin,
     currency,
+    days,
   });
 
   return (
@@ -58,15 +60,18 @@ function Chart(props: ChartProps) {
               <ChartComponent data={convertData(data, type)} type={type} />
             </div>
 
-            <div className="mt-7.5">
-              {typeOptions.map((item) => (
-                <TypeButton
-                  key={item.value}
-                  label={item.label}
-                  isSelected={type === item.value}
-                  onClick={() => setType(item.value as keyof GetCoinChartRes)}
-                />
-              ))}
+            <div className="mt-7.5 flex gap-2">
+              <TabItems
+                items={typeOptions}
+                selectedItem={type}
+                onClick={(value) => setType(value)}
+              />
+
+              <TabItems
+                items={daysOptions}
+                selectedItem={days}
+                onClick={(value) => setDays(value)}
+              />
             </div>
 
             <select

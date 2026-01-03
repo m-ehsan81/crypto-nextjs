@@ -6,6 +6,7 @@ export interface GetCoinsParams {
 export interface GetCoinChartParams {
   coinId: string;
   currency: string;
+  days: number;
 }
 
 export interface GetCoinChartRes {
