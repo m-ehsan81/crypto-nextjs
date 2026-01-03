@@ -1,19 +1,6 @@
 import Image from "next/image";
-import { CurrencyItemsType, GridRowType } from "./types";
-
-function findSymbol(currency: CurrencyItemsType) {
-  switch (currency) {
-    case "usd":
-      return "$";
-    case "eur":
-      return "€";
-    case "jpy":
-      return "¥";
-
-    default:
-      return "$";
-  }
-}
+import { GridRowType } from "./types";
+import { Symbols } from "./constant";
 
 function GridRow(props: GridRowType) {
   const {
@@ -47,7 +34,7 @@ function GridRow(props: GridRowType) {
       </td>
       <td>{name}</td>
       <td>
-        {findSymbol(currency)}
+        {Symbols?.[currency] || "$"}
         {current_price?.toLocaleString()}
       </td>
       <td

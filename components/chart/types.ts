@@ -1,6 +1,5 @@
-import { GetCoinRes } from "@/lib/features/crypto/types";
-
 export interface ChartProps {
+  currency: string;
   selectedCoin: string;
   onClose: () => void;
 }

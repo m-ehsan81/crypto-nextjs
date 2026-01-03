@@ -2,11 +2,13 @@ import { ChangeEvent, useCallback, useState } from "react";
 import { SearchNormal1 } from "iconsax-reactjs";
 
 import Select from "../select";
-import { currencyOptions } from "./constant";
+
 import { SearchBarProps } from "./type";
-import { CurrencyItemsType } from "../coin-grid/types";
 import { debounce } from "./helper";
-import { useLazySearchCoinQuery } from "@/lib/features/crypto/crypto-api";
+import {
+  useGetCurrenciesQuery,
+  useLazySearchCoinQuery,
+} from "@/lib/features/crypto/crypto-api";
 import ResultModal from "./result-modal";
 
 function SearchBar(props: SearchBarProps) {
@@ -17,6 +19,8 @@ function SearchBar(props: SearchBarProps) {
 
   const [fetchSearchCoin, { data: searchedData, isFetching, isError }] =
     useLazySearchCoinQuery();
+
+  const { data: currenciesData } = useGetCurrenciesQuery();
 
   const onSearch = useCallback((value: string) => {
     setShowModal(true);
@@ -64,11 +68,11 @@ function SearchBar(props: SearchBarProps) {
 
       <Select
         value={currency}
-        onChange={(e) => onCurrencyChange(e.target.value as CurrencyItemsType)}
+        onChange={(e) => onCurrencyChange(e.target.value)}
       >
-        {currencyOptions.map((opt) => (
-          <option key={opt.value} value={opt.value}>
-            {opt.label}
+        {currenciesData?.map((opt) => (
+          <option key={opt} value={opt}>
+            {opt.toUpperCase()}
           </option>
         ))}
       </Select>

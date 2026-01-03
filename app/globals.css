@@ -29,18 +29,13 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    background: var(--color-gray-800);
+    background: var(--color-gray-800) !important;
     border-radius: 9999px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
     background: oklch(0.6 0 0);
   }
-
-  /* html {
-    scrollbar-width: thin;
-    scrollbar-color: oklch(0.5 0 0) oklch(0.15 0 0);
-  } */
 }
 
 body {

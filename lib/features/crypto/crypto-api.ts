@@ -27,6 +27,9 @@ export const cryptoApi = createApi({
     getCoinData: build.query<GetCoinIdRes, string>({
       query: (coinId) => `/coins/${coinId}`,
     }),
+    getCurrencies: build.query<string[], void>({
+      query: () => "simple/supported_vs_currencies",
+    }),
   }),
 });
 
@@ -35,4 +38,5 @@ export const {
   useGetCoinChartQuery,
   useLazySearchCoinQuery,
   useGetCoinDataQuery,
+  useGetCurrenciesQuery,
 } = cryptoApi;

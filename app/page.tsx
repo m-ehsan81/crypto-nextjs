@@ -2,17 +2,15 @@
 
 import Chart from "@/components/chart";
 import CoinGrid from "@/components/coin-grid";
-import { CurrencyItemsType } from "@/components/coin-grid/types";
 import Loader from "@/components/loader";
 import SearchBar from "@/components/search-bar";
 import { useGetCoinsQuery } from "@/lib/features/crypto/crypto-api";
-import { GetCoinRes } from "@/lib/features/crypto/types";
 import { useState } from "react";
 
 function page() {
   const [page, setPage] = useState(1);
   const [selectedCoin, setSelectedCoin] = useState<string>("");
-  const [currency, setCurrency] = useState<CurrencyItemsType>("usd");
+  const [currency, setCurrency] = useState<string>("usd");
 
   const { data, isLoading, error } = useGetCoinsQuery({
     currency: currency,
@@ -44,6 +42,7 @@ function page() {
 
       {selectedCoin && (
         <Chart
+          currency={currency}
           selectedCoin={selectedCoin}
           onClose={() => setSelectedCoin("")}
         />

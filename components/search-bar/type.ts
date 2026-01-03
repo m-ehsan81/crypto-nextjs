@@ -1,9 +1,8 @@
 import { SearchCoinItem } from "@/lib/features/crypto/types";
-import { CurrencyItemsType } from "../coin-grid/types";
 
 export interface SearchBarProps {
-  currency: CurrencyItemsType;
-  onCurrencyChange: (value: CurrencyItemsType) => void;
+  currency: string;
+  onCurrencyChange: (value: string) => void;
 }
 
 export interface ResultModalProps {

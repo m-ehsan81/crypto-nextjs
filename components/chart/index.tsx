@@ -13,9 +13,10 @@ import { typeOptions } from "./constant";
 import TypeButton from "./type-button";
 import InformationItem from "./information-item";
 import Loader from "../loader";
+import { Symbols } from "../coin-grid/constant";
 
 function Chart(props: ChartProps) {
-  const { selectedCoin, onClose } = props;
+  const { currency, selectedCoin, onClose } = props;
 
   const [type, setType] = useState<keyof GetCoinChartRes>("prices");
 
@@ -23,11 +24,11 @@ function Chart(props: ChartProps) {
 
   const { data, isLoading } = useGetCoinChartQuery({
     coinId: selectedCoin,
-    currency: "usd",
+    currency,
   });
 
   return (
-    <div className="fixed left-0 top-0 w-full h-full backdrop-blur bg-black/30 overflow-scroll">
+    <div className="fixed left-0 top-0 w-full h-full backdrop-blur bg-black/30 overflow-auto z-30">
       <span
         className="inline-block text-2xl font-bold bg-red-500 text-white w-7.5 h-7.5 leading-7.5 text-center mt-7,5 ml-7.5 rounded-[.3125rem] cursor-pointer"
         onClick={onClose}
@@ -82,10 +83,12 @@ function Chart(props: ChartProps) {
 
             <div className="flex justify-between flex-wrap mt-7.5 mx-5">
               <InformationItem label="Prices">
-                ${CoinData.market_data.current_price.usd}
+                {Symbols?.[currency] || "$"}
+                {CoinData.market_data.current_price.usd}
               </InformationItem>
               <InformationItem label="ATH">
-                ${CoinData.market_data.ath.usd}
+                {Symbols?.[currency] || "$"}
+                {CoinData.market_data.ath.usd}
               </InformationItem>
               <InformationItem label="Market Cap">
                 {CoinData.market_data.market_cap.usd}
