@@ -52,7 +52,7 @@ function SearchBar(props: SearchBarProps) {
 
         <input
           type="text"
-          className="block w-full h-15 ps-10 pe-3 py-2.5 bg-gray-800 border border-gray-500 text-white placeholder:text-gray-500 placeholder:opacity-100 text-lg rounded-xl focus:outline-none focus:ring-blue-500 focus:border-blue-500 shadow-xs"
+          className="block w-full h-15 ps-10 pe-3 py-2.5 bg-gray-100 border border-gray-500 text-black placeholder:text-gray-500 placeholder:opacity-100 text-lg rounded-xl focus:outline-none focus:ring-blue-500 focus:border-blue-500 shadow-xs dark:bg-gray-800 dark:text-white"
           placeholder="search coin..."
           value={inputValue}
           onChange={changeSearchHandler}

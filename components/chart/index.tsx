@@ -38,7 +38,7 @@ function Chart(props: ChartProps) {
         X
       </span>
 
-      <div className="w-200 mx-auto p-5 mt-12.5 bg-gray-950 border-2 border-gray-700 rounded-[20px]">
+      <div className="w-200 mx-auto p-5 mt-12.5 bg-gray-100 border-2 border-gray-300 rounded-[20px] dark:bg-gray-950 dark:border-gray-700">
         {!data || !CoinData || isLoading ? (
           <div className="min-h-120 relative">
             <Loader />

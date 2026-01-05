@@ -1,4 +1,5 @@
 import { GetCoinChartRes } from "@/lib/features/crypto/types";
+import { useAppSelector } from "@/lib/hooks";
 import {
   AreaChart,
   Area,
@@ -20,6 +21,8 @@ function ChartComponent({
   }[];
   type: keyof GetCoinChartRes;
 }) {
+  const theme = useAppSelector((state) => state.theme.theme);
+
   const formatDate = (value: number) => {
     const date = new Date(value);
     return date.toLocaleString("en-GB", {
@@ -49,7 +52,11 @@ function ChartComponent({
           </linearGradient>
         </defs>
 
-        <CartesianGrid stroke="var(--color-gray-800)" />
+        <CartesianGrid
+          stroke={
+            theme === "dark" ? "var(--color-gray-800)" : "var(--color-gray-300)"
+          }
+        />
 
         <Area
           type="monotone"
@@ -66,18 +73,21 @@ function ChartComponent({
         <Tooltip
           labelFormatter={(value) => formatDate(value as number)}
           contentStyle={{
-            backgroundColor: "rgba(15, 23, 42, 0.95)",
+            backgroundColor:
+              theme === "dark"
+                ? "rgba(15, 23, 42, 0.70)"
+                : "rgba(255, 255, 255, 0.7)",
             border: "1px solid rgba(148, 163, 184, 0.5)",
             borderRadius: 8,
             padding: "8px 10px",
           }}
           labelStyle={{
-            color: "#e5e7eb",
+            color: theme === "dark" ? "var(--color-gray-100)" : "var(--color-gray-900)",
             fontSize: 12,
             marginBottom: 4,
           }}
           itemStyle={{
-            color: "var(--color-blue-300)",
+            color: "var(--color-blue-500)",
             fontSize: 12,
           }}
         />

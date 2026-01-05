@@ -10,7 +10,7 @@ function ResultModal(props: ResultModalProps) {
   if (!open) return null;
 
   return (
-    <div className="absolute z-10 max-h-100 overflow-auto bg-gray-800 top-17 right-0 left-0 rounded-xl">
+    <div className="absolute z-10 max-h-100 overflow-auto bg-gray-100 top-17 right-0 left-0 rounded-xl dark:bg-gray-800">
       {isError ? (
         <Error />
       ) : !coins || isLoading ? (
@@ -20,7 +20,7 @@ function ResultModal(props: ResultModalProps) {
           {coins.map((coin) => (
             <li
               key={coin.id}
-              className="flex items-center justify-between py-4 px-2 border-b border-gray-500 transition-all duration-300 hover:bg-gray-900 cursor-pointer"
+              className="flex items-center justify-between py-4 px-2 border-b border-gray-500 transition-all duration-300 hover:bg-gray-300 dark:hover:bg-gray-900 cursor-pointer"
             >
               <div className="flex gap-1 items-center">
                 <Image

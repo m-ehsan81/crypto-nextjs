@@ -1,8 +1,10 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { cryptoApi } from "./features/crypto/crypto-api";
+import themeSlice from "./features/theme-slice";
 
 const rootReducer = combineReducers({
   [cryptoApi.reducerPath]: cryptoApi.reducer,
+  [themeSlice.reducerPath]: themeSlice.reducer,
 });
 
 export const makeStore = () => {

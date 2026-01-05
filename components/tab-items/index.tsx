@@ -5,7 +5,7 @@ function TabItems<T extends string | number = string>(props: TabItemsProps<T>) {
   const { items, selectedItem, onClick } = props;
 
   return (
-    <ul className="h-10 flex items-center gap-2 bg-gray-800 px-1 rounded-md">
+    <ul className="h-10 flex items-center gap-2 bg-gray-200 px-1 rounded-md dark:bg-gray-800">
       {items.map((item) => (
         <TabItem
           key={item.value}

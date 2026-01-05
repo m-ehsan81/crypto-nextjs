@@ -5,8 +5,9 @@ function TabItem({ label, isSelected, onClick }: TabItemProps) {
   return (
     <li
       className={clsx(
-        "h-[80%] flex items-center text-base rounded-md cursor-pointer px-2 text-gray-500 hover:text-white transition-all duration-300",
-        isSelected && "bg-gray-950 text-white shadow-md"
+        "h-[80%] flex items-center text-base rounded-md cursor-pointer px-2 text-gray-500 hover:text-black transition-all duration-300 dark:hover:text-white",
+        isSelected &&
+          "bg-gray-100 text-black shadow-md dark:bg-gray-950 dark:text-white"
       )}
       onClick={onClick}
     >

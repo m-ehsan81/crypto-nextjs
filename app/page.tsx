@@ -4,6 +4,7 @@ import Chart from "@/components/chart";
 import CoinGrid from "@/components/coin-grid";
 import Loader from "@/components/loader";
 import SearchBar from "@/components/search-bar";
+import ThemeToggle from "@/components/theme-toggle";
 import { useGetCoinsQuery } from "@/lib/features/crypto/crypto-api";
 import { useState } from "react";
 
@@ -27,6 +28,8 @@ function page() {
         currency={currency}
         onCurrencyChange={(cur) => setCurrency(cur)}
       />
+
+      <ThemeToggle />
 
       {isLoading || !data ? (
         <Loader />
