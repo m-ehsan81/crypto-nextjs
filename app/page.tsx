@@ -4,7 +4,6 @@ import Chart from "@/components/chart";
 import CoinGrid from "@/components/coin-grid";
 import Loader from "@/components/loader";
 import SearchBar from "@/components/search-bar";
-import ThemeToggle from "@/components/theme-toggle";
 import { useGetCoinsQuery } from "@/lib/features/crypto/crypto-api";
 import { useState } from "react";
 
@@ -23,25 +22,27 @@ function page() {
   }
 
   return (
-    <div>
-      <SearchBar
-        currency={currency}
-        onCurrencyChange={(cur) => setCurrency(cur)}
-      />
-
-      <ThemeToggle />
-
-      {isLoading || !data ? (
-        <Loader />
-      ) : (
-        <CoinGrid
-          coins={data}
+    <div className="min-h-screen pb-8">
+      <div className="mb-8">
+        <SearchBar
           currency={currency}
-          page={page}
-          onPaginationChange={(page) => setPage(page)}
-          onClickCoin={(coin) => setSelectedCoin(coin)}
+          onCurrencyChange={(cur) => setCurrency(cur)}
         />
-      )}
+      </div>
+
+      <div className="relative min-h-[400px]">
+        {isLoading || !data ? (
+          <Loader />
+        ) : (
+          <CoinGrid
+            coins={data}
+            currency={currency}
+            page={page}
+            onPaginationChange={(page) => setPage(page)}
+            onClickCoin={(coin) => setSelectedCoin(coin)}
+          />
+        )}
+      </div>
 
       {selectedCoin && (
         <Chart
