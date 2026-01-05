@@ -48,7 +48,7 @@ export default function RootLayout({
       </head>
 
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground dark:text-background`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground dark:bg-gray-900 dark:text-background`}
       >
         <StoreProvider>
           <div className="max-w-7xl m-auto">
