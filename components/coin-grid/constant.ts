@@ -67,8 +67,6 @@ export const Symbols: Record<string, string> = {
   vef: "Bs",
   vnd: "₫",
   zar: "R",
-
-  // Special units
   xdr: "SDR",
   xag: "Ag",
   xau: "Au",

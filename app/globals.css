@@ -78,12 +78,10 @@ body {
   min-height: 100vh;
 }
 
-/* Dark mode body background */
 [data-theme="dark"] body {
   background-color: #0f172a;
 }
 
-/* Prevent body scroll when modal is open */
 body.modal-open {
   overflow: hidden;
   position: fixed;

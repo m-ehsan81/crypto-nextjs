@@ -11,7 +11,6 @@ function Header() {
                     backdrop-blur-sm
                     transition-all duration-500 ease-out
                     border border-white/10 dark:border-slate-600/30">
-      {/* Animated background gradient */}
       <div className="absolute inset-0 bg-gradient-to-r 
                       from-transparent via-white/5 to-transparent
                       animate-[shimmer_3s_ease-in-out_infinite]" />
