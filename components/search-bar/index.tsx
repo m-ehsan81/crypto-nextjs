@@ -44,16 +44,19 @@ function SearchBar(props: SearchBarProps) {
   };
 
   return (
-    <div className="flex gap-4 mt-12.5">
-      <div className="relative w-150">
-        <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-          <SearchNormal1 className="text-gray-500" />
+    <div className="flex flex-col sm:flex-row gap-4 mt-8">
+      <div className="relative flex-1 max-w-2xl">
+        <div className="absolute inset-y-0 start-0 flex items-center ps-4 pointer-events-none z-10">
+          <SearchNormal1 
+            className="text-gray-400 dark:text-gray-500 transition-colors duration-300 group-focus-within:text-blue-500" 
+            size={20}
+          />
         </div>
 
         <input
           type="text"
-          className="block w-full h-15 ps-10 pe-3 py-2.5 bg-gray-100 border border-gray-500 text-black placeholder:text-gray-500 placeholder:opacity-100 text-lg rounded-xl focus:outline-none focus:ring-blue-500 focus:border-blue-500 shadow-xs dark:bg-gray-800 dark:text-white"
-          placeholder="search coin..."
+          className="block w-full h-14 ps-12 pe-4 py-3 bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500 text-base rounded-2xl focus:outline-none focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 dark:focus:border-blue-400 shadow-sm dark:shadow-gray-900/50 transition-all duration-300 ease-out hover:border-gray-300 dark:hover:border-gray-600 group"
+          placeholder="Search cryptocurrency..."
           value={inputValue}
           onChange={changeSearchHandler}
         />
