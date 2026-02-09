@@ -12,7 +12,7 @@ import {
 import ResultModal from "./result-modal";
 
 function SearchBar(props: SearchBarProps) {
-  const { currency, onCurrencyChange } = props;
+  const { currency, onCurrencyChange, setSelectedCoin } = props;
 
   const [inputValue, setInputValue] = useState("");
   const [showModal, setShowModal] = useState(false);
@@ -32,7 +32,7 @@ function SearchBar(props: SearchBarProps) {
       if (searchItem) onSearch(searchItem);
       else setShowModal(false);
     }, 1000),
-    [onSearch]
+    [onSearch],
   );
 
   const changeSearchHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -43,12 +43,18 @@ function SearchBar(props: SearchBarProps) {
     debouncedSearch(value.trim());
   };
 
+  const onCoinClicked = (coin: string) => {
+    setShowModal(false);
+    setSelectedCoin(coin);
+    setInputValue("");
+  };
+
   return (
     <div className="flex flex-col sm:flex-row gap-4 mt-8">
       <div className="relative flex-1 max-w-2xl">
         <div className="absolute inset-y-0 start-0 flex items-center ps-4 pointer-events-none z-10">
-          <SearchNormal1 
-            className="text-gray-400 dark:text-gray-500 transition-colors duration-300 group-focus-within:text-blue-500" 
+          <SearchNormal1
+            className="text-gray-400 dark:text-gray-500 transition-colors duration-300 group-focus-within:text-blue-500"
             size={20}
           />
         </div>
@@ -66,6 +72,7 @@ function SearchBar(props: SearchBarProps) {
           coins={searchedData?.coins}
           isLoading={isFetching}
           isError={isError}
+          onCoinClicked={onCoinClicked}
         />
       </div>
 

@@ -5,7 +5,7 @@ import Error from "./error";
 import Loding from "./loding";
 
 function ResultModal(props: ResultModalProps) {
-  const { open, coins, isError, isLoading } = props;
+  const { open, coins, isError, isLoading, onCoinClicked } = props;
 
   if (!open) return null;
 
@@ -25,6 +25,7 @@ function ResultModal(props: ResultModalProps) {
             <li
               key={coin.id}
               className="flex items-center justify-between py-3 px-4 border-b border-gray-200 dark:border-gray-700 transition-all duration-300 ease-out hover:bg-blue-50 dark:hover:bg-blue-900/20 cursor-pointer group first:rounded-t-2xl"
+              onClick={() => onCoinClicked(coin.id)}
             >
               <div className="flex gap-3 items-center flex-1 min-w-0">
                 <div className="relative flex-shrink-0">
@@ -41,7 +42,7 @@ function ResultModal(props: ResultModalProps) {
                 </span>
               </div>
 
-              <ArrowRight2 
+              <ArrowRight2
                 className="text-gray-400 dark:text-gray-500 group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-all duration-300 group-hover:translate-x-1 flex-shrink-0"
                 size={20}
               />

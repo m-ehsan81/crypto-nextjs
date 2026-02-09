@@ -25,6 +25,7 @@ function page() {
     <div className="min-h-screen pb-8">
       <div className="mb-8">
         <SearchBar
+          setSelectedCoin={setSelectedCoin}
           currency={currency}
           onCurrencyChange={(cur) => setCurrency(cur)}
         />
